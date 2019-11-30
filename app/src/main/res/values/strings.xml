@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Bluetooth -John Melody</string>
+    <string name="ble_on">Bluetooth On</string>
+    <string name="ble_off">Bluetooth Off</string>
+    <string name="MAC_ADD">MAC ADDRESS: </string>
+    <string name="LocalBle">Local Bluetooth Name: </string>
+    <string name="Scan">Scan For Device</string>
+</resources>
