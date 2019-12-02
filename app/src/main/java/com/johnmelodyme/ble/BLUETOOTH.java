@@ -80,6 +80,7 @@ public class BLUETOOTH extends AppCompatActivity {
             System.out.println("BLUETOOTH PROCEED TO ENABLE");
         }
 
+
         //if (device.getName().equals(TheBluetoothNAme)){
         //}
 
@@ -90,6 +91,7 @@ public class BLUETOOTH extends AppCompatActivity {
             startActivityForResult(enableBluetoothIntent, 1);
         }
          */
+
         // ON AND OFF TOGGLE::
         toggle_off = findViewById(R.id.toggle);
         on_off_BLuetooth_text_view = findViewById(R.id.on_off_ble_textView);
@@ -192,19 +194,6 @@ public class BLUETOOTH extends AppCompatActivity {
             }
         }
     };
-/*
-    private void getConnectedDevice(){
-        boolean retval = true;
-        try {
-            retval = android.bluetooth.BluetoothProfile.STATE_DISCONNECTED != BluetoothAdapter
-                    .getDefaultAdapter()
-                    .getProfileConnectionState(android.bluetooth.BluetoothProfile.HEADSET);
-
-        } catch (Exception exc) {
-            // nothing to do
-        }
-    }
- */
 
 public void DeviceDiscovery(View v){
     scanningMSG();
@@ -218,7 +207,4 @@ public void DeviceDiscovery(View v){
                 .show();
     }
 
-    private void list_of_device() {
-
-    }
 }
