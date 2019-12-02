@@ -1,8 +1,13 @@
 package com.johnmelodyme.ble;
+/**
+ * @CREATOR: JOHN MELODY MELISSA ESKHOLAZHT .C.T.K.
+ * @DATETIME: 02/12/2019
+ * @COPYRIGHT: 2019 - 2023
+ * @PROJECTNAME: BLUETOOTH LOW ENERGY TUTORIAL
+ */
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothGattService;
@@ -23,15 +28,12 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.johnmelodyme.ble.R.mipmap;
-
 import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
-
 import static android.bluetooth.BluetoothAdapter.*;
 import static com.johnmelodyme.ble.R.mipmap.*;
 import static com.johnmelodyme.ble.R.mipmap.toggle;
@@ -49,7 +51,7 @@ public class BLUETOOTH extends AppCompatActivity {
     TextView bluetoothName;
     Button toggle_off;
     ListView list_View_list_bluetooth;
-    // BLUETOOTH ::
+    TextView name, macadd;
     public static int REQUEST_BLUETOOTH = 1;
     private boolean Scanning;
     private Handler handler;
@@ -88,13 +90,21 @@ public class BLUETOOTH extends AppCompatActivity {
             startActivityForResult(enableBluetoothIntent, 1);
         }
          */
-
         // ON AND OFF TOGGLE::
         toggle_off = findViewById(R.id.toggle);
         on_off_BLuetooth_text_view = findViewById(R.id.on_off_ble_textView);
         mac = findViewById(R.id.Mac);
         bluetoothName = findViewById(R.id.BleName);
-        list_View_list_bluetooth = findViewById(R.id.listOfDEVICE);
+
+        BluetoothAdapter aa = BluetoothAdapter.getDefaultAdapter();
+        Set <BluetoothDevice> pairedDevice = aa.getBondedDevices();
+
+        List<String> streeng = new ArrayList<String>();
+        for(BluetoothDevice btDevice : pairedDevice)
+            streeng.add(btDevice.getName());
+
+        ListView listView = findViewById(R.id.listOfDEVICE);
+        listView.setAdapter(new ArrayAdapter<String>(this, R.layout.ble_list));
 
         toggle_off.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,11 +114,6 @@ public class BLUETOOTH extends AppCompatActivity {
                     toggle_off.setBackgroundResource(toggle);
                     BA.enable();
 
-                    System.out.println("BLUETOOTH TURNING ON");
-                    Toast.makeText(BLUETOOTH.this,
-                            "BLUETOOTH ON",
-                            Toast.LENGTH_SHORT)
-                            .show();
                     startSearching();
                     if (BA.startDiscovery()){
                         System.out.println("Scanning");
@@ -134,21 +139,14 @@ public class BLUETOOTH extends AppCompatActivity {
                 else {
                     BA.disable();
                     System.out.println("BLUETOOTH TURNING OFF");
-                    Toast.makeText(BLUETOOTH.this,
-                            "BLUETOOTH OFF",
-                            Toast.LENGTH_SHORT)
-                            .show();
                     toggle_off.setBackgroundResource(R.mipmap.toggleoff);
                     on_off_BLuetooth_text_view.setText(R.string.ble_off);
-
                     String empty = "";
                     mac.setText(empty);
                     bluetoothName.setText(empty);
                 }
             }
         });
-
-
     }
     // https://stackoverflow.com/questions/46841534/pair-a-bluetooth-device-in-android-studio
     private void startSearching() {
@@ -209,26 +207,18 @@ public class BLUETOOTH extends AppCompatActivity {
  */
 
 public void DeviceDiscovery(View v){
-    scan = new LeScanCallback() {
-        @Override
-        public void onLeScan(BluetoothDevice device, int rssi, byte[] scanRecord) {
-            BA.startLeScan(scan);
-            BA.stopLeScan(scan);
-            Toast.makeText(BLUETOOTH.this,
-                    "Scanning",
-                    Toast.LENGTH_SHORT)
-                    .show();
+    scanningMSG();
 
-            list_of_device();
-        }
-    };
 }
 
+    private void scanningMSG() {
+        Toast.makeText(BLUETOOTH.this,
+                "Scanning",
+                Toast.LENGTH_SHORT)
+                .show();
+    }
+
     private void list_of_device() {
-    String a = device.getAddress();
-    String b = device.getName();
-    String [] devicename = {a, b};
-    ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.ble_list, devicename);
-    list_View_list_bluetooth.setAdapter(adapter);
+
     }
 }
