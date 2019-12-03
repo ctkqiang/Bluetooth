@@ -5,4 +5,5 @@
     <string name="MAC_ADD">MAC ADDRESS: </string>
     <string name="LocalBle">Local Bluetooth Name: </string>
     <string name="Scan">Scan For Device</string>
+    <string name="connected_device">Connected Device: </string>
 </resources>

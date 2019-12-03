@@ -29,4 +29,12 @@ dependencies {
 
     // Event Bus Plugins :
     implementation 'org.greenrobot:eventbus:3.1.1'
+    // BLE:
+    implementation 'com.inuker.bluetooth:library:1.4.0'
+
+    //ToolBar :
+    //noinspection GradleCompatible
+    implementation 'com.android.support:appcompat-v7:23.1.1'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+
 }

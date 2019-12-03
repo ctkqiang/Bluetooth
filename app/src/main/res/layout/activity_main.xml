@@ -6,93 +6,110 @@
     android:layout_height="match_parent"
     tools:context=".BLUETOOTH">
 
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+
+    <TextView
+        android:id="@+id/on_off_ble_textView"
+        android:layout_width="249dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="63dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="447dp"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/toggle"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
         android:id="@+id/toggle"
         android:layout_width="61dp"
         android:layout_height="58dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="11dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="63dp"
         android:background="@mipmap/toggleoff"
         app:layout_constraintEnd_toStartOf="@+id/on_off_ble_textView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/on_off_ble_textView"
-        android:layout_width="249dp"
-        android:layout_height="57dp"
-        android:layout_marginStart="11dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="25dp"
-        android:textAlignment="center"
-        android:textColor="@android:color/black"
-        android:textSize="36sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/toggle"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="112dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="23dp"
-        android:text="@string/MAC_ADD"
-        app:layout_constraintEnd_toStartOf="@+id/Mac"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toggle" />
-
-    <TextView
         android:id="@+id/textView3"
         android:layout_width="164dp"
         android:layout_height="19dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="10dp"
         android:text="@string/LocalBle"
         app:layout_constraintEnd_toStartOf="@+id/BleName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <TextView
+        android:id="@+id/textView4"
+        android:layout_width="164dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="10dp"
+        android:text="@string/connected_device"
+        app:layout_constraintEnd_toStartOf="@+id/connected_device"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <TextView
         android:id="@+id/Mac"
         android:layout_width="212dp"
         android:layout_height="19dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="144dp"
+        android:layout_marginEnd="26dp"
         android:textColor="@android:color/holo_red_dark"
-        android:layout_marginEnd="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/on_off_ble_textView" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/BleName"
         android:layout_width="160dp"
         android:layout_height="19dp"
+        android:layout_marginEnd="26dp"
         android:textColor="@android:color/holo_red_dark"
-        android:layout_marginEnd="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView3"
         app:layout_constraintTop_toBottomOf="@+id/Mac" />
+
+    <TextView
+        android:id="@+id/connected_device"
+        android:layout_width="160dp"
+        android:layout_height="19dp"
+        android:layout_marginEnd="26dp"
+        android:textColor="@android:color/holo_red_dark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/BleName" />
 
     <Button
         android:id="@+id/scan"
         android:layout_width="123dp"
         android:layout_height="38dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginBottom="4dp"
         android:background="@android:color/white"
         android:onClick="DeviceDiscovery"
         android:text="@string/Scan"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-    <ListView
-        android:id="@+id/listOfDEVICE"
-        android:layout_width="345dp"
-        android:layout_height="130dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="7dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="112dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="23dp"
+        android:text="@string/MAC_ADD"
+        app:layout_constraintEnd_toStartOf="@+id/Mac"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scan" />
+        app:layout_constraintTop_toBottomOf="@+id/toggle" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
