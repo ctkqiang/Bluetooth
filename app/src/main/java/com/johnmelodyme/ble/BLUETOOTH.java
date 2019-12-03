@@ -47,6 +47,7 @@ public class BLUETOOTH extends AppCompatActivity {
     ListView the_bt_list_view;
     ArrayAdapter<String> AA;
     int REQUEST_CONNECT_DEVICE;
+    int interlude;
     public static int REQUEST_BLUETOOTH = 1;
     private boolean Scanning;
     private Handler handler;
@@ -63,6 +64,7 @@ public class BLUETOOTH extends AppCompatActivity {
     {
         REQUEST_CONNECT_DEVICE = 1;
         TheBluetoothNAme = "i9ST";
+        interlude = 1;
     }
 
     public void onStart(){
@@ -82,20 +84,12 @@ public class BLUETOOTH extends AppCompatActivity {
         //Toolbar tb;
         //tb = findViewById(R.id.toolbar);
         //setSupportActionBar(tb)
-        checkBLUETOOTH();
-
+        init();
         //if (device.getName().equals(TheBluetoothNAme)){
         //}
-
         /*
         getSupportActionBar().setTitle("Bluetooth Tutorial");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        if (!(BA.isEnabled())){
-            Intent enableBluetoothIntent;
-            enableBluetoothIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-            startActivityForResult(enableBluetoothIntent, 1);
-        }
          */
 
         // ON AND OFF TOGGLE::
@@ -119,7 +113,6 @@ public class BLUETOOTH extends AppCompatActivity {
                     } else {
                         System.out.println("Opps");
                     }
-
                     /*
                     // OPEN DEVICE _ BLUETOOTH SETTING ::
                     Intent intentOpenBluetoothSettings = new Intent();
@@ -147,11 +140,26 @@ public class BLUETOOTH extends AppCompatActivity {
         });
     }
 
+    private void init() {
+        checkBLUETOOTH();
+        DISCOVERABLE();
+    }
+
+    private void DISCOVERABLE() {
+        // BLUETOOTH SCANNER ::
+        if (!(BA.isEnabled())){
+            Intent enableBluetoothIntent;
+            enableBluetoothIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivityForResult(enableBluetoothIntent, interlude);
+        }
+    }
+
     private void checkBLUETOOTH() {
         //  BLUETOOTH SUPPORTABILITY:
         BA = getDefaultAdapter();
         if (BA == null){
             notSupport();
+
         } else {
             System.out.println("BLUETOOTH PROCEED TO ENABLE");
         }

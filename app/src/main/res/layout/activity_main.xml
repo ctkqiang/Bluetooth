@@ -89,19 +89,6 @@
         app:layout_constraintStart_toEndOf="@+id/textView4"
         app:layout_constraintTop_toBottomOf="@+id/BleName" />
 
-    <Button
-        android:id="@+id/scan"
-        android:layout_width="123dp"
-        android:layout_height="38dp"
-        android:layout_marginBottom="4dp"
-        android:background="@android:color/white"
-        android:onClick="DeviceDiscovery"
-        android:text="@string/Scan"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <TextView
         android:id="@+id/textView2"
         android:layout_width="112dp"
