@@ -41,7 +41,7 @@ public class BLUETOOTH extends AppCompatActivity {
 
 
     private static final UUID MY_UUID;
-    TextView on_off_BLuetooth_text_view, mac, bluetoothName;
+    TextView on_off_BLuetooth_text_view, mac, bluetoothName, connected_device;
     Button toggle_off;
     String TheBluetoothNAme;
     ListView the_bt_list_view;
@@ -103,6 +103,7 @@ public class BLUETOOTH extends AppCompatActivity {
         on_off_BLuetooth_text_view = findViewById(R.id.on_off_ble_textView);
         mac = findViewById(R.id.Mac);
         bluetoothName = findViewById(R.id.BleName);
+        connected_device = findViewById(R.id.connected_device);
 
         toggle_off.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -200,56 +201,6 @@ public class BLUETOOTH extends AppCompatActivity {
             }
         }
     };
-
-public void DeviceDiscovery(View v){
-    ConnectDeviceRequest();
-}
-    private void ConnectDeviceRequest() {
-
-      /*
-       Intent ConnectDevice;
-       ConnectDevice = new Intent(BLUETOOTH.this, BLUETOOTH.class);
-       startActivityForResult(ConnectDevice, REQUEST_CONNECT_DEVICE);
-       */
-
-      List_OUT_BLUETOOTH_DEVICE();
-
-    }
-    // Get paired devices.
-    // There are paired devices.
-    // Get the name and address of each paired device.
-    private void List_OUT_BLUETOOTH_DEVICE() {
-        DISCOVER_BLUETOOTH();
-        Set<BluetoothDevice> paired_device = BA.getBondedDevices();
-        ArrayList<String> list = new ArrayList<String>();
-        if (paired_device.size() > 0 ){
-            for (BluetoothDevice device : paired_device){
-                String device_name;
-                String device_MAC_addresses;
-                device_name = device.getName();
-                device_MAC_addresses = device.getAddress();
-                list.add("Name: " + device_name + "MAC Address: " + device_MAC_addresses);
-            }
-
-        } else {
-            String other;
-            other = "OTHER";
-            System.out.println(other);
-        }
-    }
-
-    private void DISCOVER_BLUETOOTH() {
-    /////////////////
-    }
-
-
-    private void DEVICE_DISCOVERABLE() {
-        if (!BA.isDiscovering()) {
-            Intent bt;
-            bt = new Intent(ACTION_REQUEST_DISCOVERABLE);
-            startActivityForResult(bt, 1);
-        }
-    }
 
     public void about(View v){
         Intent about;
