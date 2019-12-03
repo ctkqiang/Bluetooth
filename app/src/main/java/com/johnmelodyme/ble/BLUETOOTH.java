@@ -36,6 +36,7 @@ import static android.bluetooth.BluetoothAdapter.*;
 import static com.johnmelodyme.ble.R.id.ble;
 import static com.johnmelodyme.ble.R.id.start;
 import static com.johnmelodyme.ble.R.mipmap.toggle;
+import static com.johnmelodyme.ble.R.mipmap.toggleoff;
 
 public class BLUETOOTH extends AppCompatActivity {
 
@@ -84,20 +85,17 @@ public class BLUETOOTH extends AppCompatActivity {
         //Toolbar tb;
         //tb = findViewById(R.id.toolbar);
         //setSupportActionBar(tb)
-        init();
+        checkBLUETOOTH();
         //if (device.getName().equals(TheBluetoothNAme)){
         //}
-        /*
-        getSupportActionBar().setTitle("Bluetooth Tutorial");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-         */
-
         // ON AND OFF TOGGLE::
         toggle_off = findViewById(R.id.toggle);
         on_off_BLuetooth_text_view = findViewById(R.id.on_off_ble_textView);
         mac = findViewById(R.id.Mac);
         bluetoothName = findViewById(R.id.BleName);
         connected_device = findViewById(R.id.connected_device);
+
+        config_button_BLE();
 
         toggle_off.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -140,9 +138,13 @@ public class BLUETOOTH extends AppCompatActivity {
         });
     }
 
-    private void init() {
-        checkBLUETOOTH();
-        DISCOVERABLE();
+    private void config_button_BLE() {
+        if (!(BA.isEnabled())){
+            toggle_off.setBackgroundResource(toggleoff);
+        }
+        else {
+            toggle_off.setBackgroundResource(toggle);
+        }
     }
 
     private void DISCOVERABLE() {
@@ -163,7 +165,9 @@ public class BLUETOOTH extends AppCompatActivity {
         } else {
             System.out.println("BLUETOOTH PROCEED TO ENABLE");
         }
+
     }
+
 
     // https://stackoverflow.com/questions/46841534/pair-a-bluetooth-device-in-android-studio
     private void startSearching() {
@@ -196,6 +200,7 @@ public class BLUETOOTH extends AppCompatActivity {
                     }
                 });
     }
+
 
     private final BroadcastReceiver receiver = new BroadcastReceiver() {
         @Override
