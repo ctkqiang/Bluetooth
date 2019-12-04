@@ -9,7 +9,7 @@ package com.johnmelodyme.ble;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import android.annotation.SuppressLint;
+
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothGattService;
@@ -19,25 +19,19 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.nfc.Tag;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
+
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.UUID;
 import static android.bluetooth.BluetoothAdapter.*;
-import static com.johnmelodyme.ble.R.id.LV;
-import static com.johnmelodyme.ble.R.id.ble;
-import static com.johnmelodyme.ble.R.id.button_scan;
-import static com.johnmelodyme.ble.R.id.start;
 import static com.johnmelodyme.ble.R.mipmap.toggle;
 import static com.johnmelodyme.ble.R.mipmap.toggleoff;
 
@@ -45,8 +39,8 @@ public class BLUETOOTH extends AppCompatActivity {
     // GLOBAL DECLARATION:
     boolean DoubleBackToExitPressedOne = false;
     private static final UUID MY_UUID;
-    TextView on_off_BLuetooth_text_view, mac, bluetoothName, connected_device, Button_scan;
-    Button toggle_off;
+    TextView on_off_BLuetooth_text_view, mac, bluetoothName, connected_device;
+    Button toggle_off,  Button_scan;
     String TheBluetoothNAme;
     ListView the_bt_list_view;
     ArrayAdapter<String> AA;
@@ -270,6 +264,14 @@ public class BLUETOOTH extends AppCompatActivity {
         Button_scan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                /*
+                paired_devices = BA.getBondedDevices();
+                ArrayList<String> list = new ArrayList<String>();
+                for (BluetoothDevice bluetoothDevice : paired_devices)
+                    list.add(bluetoothDevice.getName());
+                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(BLUETOOTH.this, R.layout.ble_list, list);
+                the_bt_list_view.setAdapter(arrayAdapter);
+                 */
             }
         });
     }
