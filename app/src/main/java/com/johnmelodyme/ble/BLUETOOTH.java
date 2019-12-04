@@ -219,13 +219,8 @@ public class BLUETOOTH extends AppCompatActivity {
                     BA.startDiscovery();
                     toggle_off.setBackgroundResource(toggle);
                     BA.enable();
-
                     startSearching();
-                    if (BA.startDiscovery()){
-                        System.out.println("Scanning");
-                    } else {
-                        System.out.println("Opps");
-                    }
+                    showDevice();
                     /*
                     // OPEN DEVICE _ BLUETOOTH SETTING ::
                     Intent intentOpenBluetoothSettings = new Intent();
@@ -264,16 +259,24 @@ public class BLUETOOTH extends AppCompatActivity {
         Button_scan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*
-                paired_devices = BA.getBondedDevices();
-                ArrayList<String> list = new ArrayList<String>();
-                for (BluetoothDevice bluetoothDevice : paired_devices)
-                    list.add(bluetoothDevice.getName());
-                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(BLUETOOTH.this, R.layout.ble_list, list);
-                the_bt_list_view.setAdapter(arrayAdapter);
-                 */
+                showDevice();
             }
         });
+    }
+
+    // THIS METHOD IS A DEVICE LISTING :
+    private void showDevice() {
+        paired_devices = BA.getBondedDevices();
+        ArrayList arrayList = new ArrayList();
+        if (paired_devices.size() > 0){
+            for (BluetoothDevice bluetoothDevice : paired_devices){
+                String DEVICE_NAME = bluetoothDevice.getName();
+                String DEVICE_MAC_ADDRESS = bluetoothDevice.getAddress();
+                arrayList.add("Device Name: " + DEVICE_NAME + "\n" + "MAC: " + DEVICE_MAC_ADDRESS);
+            }
+            AA = new ArrayAdapter(BLUETOOTH.this, R.layout.support_simple_spinner_dropdown_item, arrayList);
+            the_bt_list_view.setAdapter(AA);
+        }
     }
 
     // THIS METHOD WILL LEAD YOU TO THE DEVICE'S BLUETOOTH SETTINGS PROGRAMMATICALLY:
