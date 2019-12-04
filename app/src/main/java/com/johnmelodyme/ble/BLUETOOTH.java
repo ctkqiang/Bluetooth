@@ -159,18 +159,12 @@ public class BLUETOOTH extends AppCompatActivity {
         Button_scan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                paired_devices = BA.getBondedDevices();
 
-                ArrayList list = new ArrayList();
-                for (BluetoothDevice bluetoothDevice : paired_devices)
-                    list.add(bluetoothDevice.getName());
-                @SuppressLint("ResourceType") ArrayAdapter adapter = new ArrayAdapter(BLUETOOTH.this, R.id.bluetoothName, list);
-                the_bt_list_view.setAdapter(adapter);
             }
         });
     }
 
-    // THIS METHOD WILL LEAD YOU TO THE DEVICE'S BLUETOOTH SETTINGS PROGRAMITICALLY:
+    // THIS METHOD WILL LEAD YOU TO THE DEVICE'S BLUETOOTH SETTINGS PROGRAMMATICALLY:
     private void OPEN_DEVICE_BLUETOOTH_SETTINGS() {
         Intent intentOpenBluetoothSettings = new Intent();
         intentOpenBluetoothSettings.setAction(android.provider.Settings.ACTION_BLUETOOTH_SETTINGS);
@@ -238,16 +232,6 @@ public class BLUETOOTH extends AppCompatActivity {
         BA.startDiscovery();
     }
 
-    // PAIRED DEVICE:
-    private void pairdevice(BluetoothDevice d) {
-        try{
-            d.getAddress();
-            d.createBond();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     // BROADCASTER ::
     private final BroadcastReceiver receiver = new BroadcastReceiver() {
         @Override
@@ -268,4 +252,6 @@ public class BLUETOOTH extends AppCompatActivity {
         about = new Intent(BLUETOOTH.this, About.class);
         startActivity(about);
     }
+
+
 }

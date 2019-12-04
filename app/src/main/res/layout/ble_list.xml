@@ -8,14 +8,31 @@
     android:orientation="vertical"
     tools:ignore="AdapterViewChildren">
 
+
     <TextView
-        android:id="@+id/bluetoothName"
-        android:layout_width="363dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="3dp"
+        android:id="@+id/Bluetooth_Name"
+        android:layout_width="360dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="1dp"
+        android:fontFamily="casual"
+        android:textAlignment="viewStart"
+        android:textAllCaps="true"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/MAcAddresses"
+        android:layout_width="358dp"
+        android:layout_height="21dp"
+        android:fontFamily="casual"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Bluetooth_Name" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
