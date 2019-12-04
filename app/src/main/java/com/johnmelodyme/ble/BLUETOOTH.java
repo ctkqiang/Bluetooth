@@ -31,6 +31,7 @@ import static com.johnmelodyme.ble.R.mipmap.toggleoff;
  * @DATETIME: 12/12/2019
  * @COPYRIGHT: 2019 - 2023
  * @PROJECTNAME: BLUETOOTH LOW ENERGY TUTORIAL
+ * @ACTIVITY_NAME: BLUETOOTH
  */
 
 public class BLUETOOTH extends AppCompatActivity {
