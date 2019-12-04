@@ -1,15 +1,7 @@
 package com.johnmelodyme.ble;
 
-/**
- * @CREATOR: JOHN MELODY MELISSA ESKHOLAZHT .C.T.K.
- * @DATETIME: 12/12/2019
- * @COPYRIGHT: 2019 - 2023
- * @PROJECTNAME: BLUETOOTH LOW ENERGY TUTORIAL
- */
-
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothGattService;
@@ -27,13 +19,19 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.UUID;
 import static android.bluetooth.BluetoothAdapter.*;
 import static com.johnmelodyme.ble.R.mipmap.toggle;
 import static com.johnmelodyme.ble.R.mipmap.toggleoff;
+
+/**
+ * @CREATOR: JOHN MELODY MELISSA ESKHOLAZHT .C.T.K.
+ * @DATETIME: 12/12/2019
+ * @COPYRIGHT: 2019 - 2023
+ * @PROJECTNAME: BLUETOOTH LOW ENERGY TUTORIAL
+ */
 
 public class BLUETOOTH extends AppCompatActivity {
     // GLOBAL DECLARATION:
@@ -62,7 +60,6 @@ public class BLUETOOTH extends AppCompatActivity {
     static {
         MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
     }
-
     {
         REQUEST_CONNECT_DEVICE = 1;
         TheBluetoothNAme = "i9ST";
@@ -107,7 +104,6 @@ public class BLUETOOTH extends AppCompatActivity {
         //setSupportActionBar(tb)
         //if (device.getName().equals(TheBluetoothNAme)){
         //}
-
         //  BROADCAST_RECEIVER FOR [ACTION_FOUND] ::
         final BroadcastReceiver broadcastReceiver;
         broadcastReceiver = new BroadcastReceiver() {
@@ -318,7 +314,6 @@ public class BLUETOOTH extends AppCompatActivity {
             // IF ADAPTERS FOUND:: SYSTEM_OUT:
             System.out.println("BLUETOOTH PROCEED TO ENABLE");
         }
-
     }
 
     // METHOD FOR "checkBLUETOOTH()":
