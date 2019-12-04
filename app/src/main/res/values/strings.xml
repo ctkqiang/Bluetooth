@@ -6,4 +6,5 @@
     <string name="LocalBle">Local Bluetooth Name: </string>
     <string name="Scan">Show Device</string>
     <string name="connected_device">Connected Device: </string>
+    <string name="cop">All Right Reserved  2020 © John Melody Melissa Copyright</string>
 </resources>
