@@ -9,7 +9,6 @@ package com.johnmelodyme.ble;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -69,11 +68,14 @@ public class BLUETOOTH extends AppCompatActivity {
     static {
         MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
     }
+
     {
         REQUEST_CONNECT_DEVICE = 1;
         TheBluetoothNAme = "i9ST";
         interlude = 1;
-    }// DOUBLE_PRESSED ON BACK TO QUIT IN 2 SECOND:
+    }
+
+    // DOUBLE_PRESSED ON BACK TO QUIT IN 2 SECOND:
     @Override
     public void onBackPressed() {
         if (DoubleBackToExitPressedOne) {
