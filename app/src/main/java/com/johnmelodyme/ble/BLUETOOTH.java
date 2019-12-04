@@ -20,6 +20,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -43,12 +44,14 @@ import static com.johnmelodyme.ble.R.mipmap.toggleoff;
 
 public class BLUETOOTH extends AppCompatActivity {
     // GLOBAL DECLARATION:
+    boolean DoubleBackToExitPressedOne = false;
     private static final UUID MY_UUID;
     TextView on_off_BLuetooth_text_view, mac, bluetoothName, connected_device, Button_scan;
     Button toggle_off;
     String TheBluetoothNAme;
     ListView the_bt_list_view;
     ArrayAdapter<String> AA;
+    ArrayList<BluetoothDevice> bluetoothDeviceArrayList = new ArrayList<>();
     int REQUEST_CONNECT_DEVICE;
     int interlude;
     public static int REQUEST_BLUETOOTH = 1;
@@ -61,6 +64,7 @@ public class BLUETOOTH extends AppCompatActivity {
     BluetoothDevice device;
     BluetoothSocket socket;
     Set<BluetoothDevice> paired_devices;
+    DeviceListAdapter deviceListAdapter;
 
     static {
         MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
@@ -69,6 +73,21 @@ public class BLUETOOTH extends AppCompatActivity {
         REQUEST_CONNECT_DEVICE = 1;
         TheBluetoothNAme = "i9ST";
         interlude = 1;
+    }// DOUBLE_PRESSED ON BACK TO QUIT IN 2 SECOND:
+    @Override
+    public void onBackPressed() {
+        if (DoubleBackToExitPressedOne) {
+            super.onBackPressed();
+            return;
+        }
+        this.DoubleBackToExitPressedOne = true;
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                DoubleBackToExitPressedOne = false;
+            }
+        }, 2000);
     }
 
     // GLB: WILL RUN THIS ON STARTING THE APPLICATION:
@@ -84,14 +103,104 @@ public class BLUETOOTH extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        checkBLUETOOTH(); // CHECK THE METHOD
         //getSupportActionBar().setTitle("Bluetooth Tutorial");
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //Toolbar tb;
         //tb = findViewById(R.id.toolbar);
         //setSupportActionBar(tb)
-        checkBLUETOOTH(); // CHECK THE METHOD
         //if (device.getName().equals(TheBluetoothNAme)){
         //}
+
+        //  BROADCAST_RECEIVER FOR [ACTION_FOUND] ::
+        final BroadcastReceiver broadcastReceiver;
+        broadcastReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                String action = intent.getAction();
+                // WHEN DISCOVERY FINDS A DEVICE ::
+                if (action.equals(BA.ACTION_STATE_CHANGED)){
+                    final int state = intent.getIntExtra(EXTRA_STATE, BA.ERROR);
+
+                    switch (state){
+                        case BluetoothAdapter.STATE_OFF:
+                            Toast.makeText(getApplicationContext(), "STATE_OFF",
+                                    Toast.LENGTH_SHORT)
+                                    .show();
+                            break;
+                        case BluetoothAdapter.STATE_TURNING_OFF:
+                            Toast.makeText(getApplicationContext(), "STATE_TURNING_OFF",
+                                    Toast.LENGTH_SHORT)
+                                    .show();
+                            break;
+                        case BluetoothAdapter.STATE_ON:
+                            Toast.makeText(getApplicationContext(), "STATE_ON",
+                                    Toast.LENGTH_SHORT)
+                                    .show();
+                            break;
+                        case BluetoothAdapter.STATE_TURNING_ON:
+                            Toast.makeText(getApplicationContext(), "STATE_TURNING_ON",
+                                    Toast.LENGTH_SHORT)
+                                    .show();
+                            break;
+                    }
+                }
+            }
+        };
+
+        // BROADCAST_RECEIVER FOR CHANGES MADE TO BLUETOOTH STATES ::
+        final BroadcastReceiver BR_CHANGES = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                final String action = intent.getAction();
+                if (action.equals(BluetoothAdapter.ACTION_STATE_CHANGED)){
+                    int mode = intent.getIntExtra(BluetoothAdapter.EXTRA_SCAN_MODE,
+                            BluetoothAdapter.ERROR);
+
+                    switch (mode) {
+                        case SCAN_MODE_CONNECTABLE_DISCOVERABLE:
+                            Toast.makeText(getApplicationContext(), "DISCOVERABILITY ENABLED",
+                                    Toast.LENGTH_SHORT)
+                                    .show();
+                            break;
+                        case SCAN_MODE_CONNECTABLE:
+                            Toast.makeText(getApplicationContext(), "DISCOVERABILITY DISABLED, ABLE TO RECEIVE CONNECTIONS",
+                                    Toast.LENGTH_SHORT)
+                                    .show();
+                            break;
+                        case SCAN_MODE_NONE:
+                            Toast.makeText(getApplicationContext(), "$NULL",
+                                    Toast.LENGTH_SHORT)
+                                    .show();
+                            break;
+                        case STATE_CONNECTING:
+                            Toast.makeText(getApplicationContext(), "CONNECTING",
+                                    Toast.LENGTH_SHORT)
+                                    .show();
+                            break;
+                        case STATE_CONNECTED:
+                            Toast.makeText(getApplicationContext(), "CONNECTED",
+                                    Toast.LENGTH_SHORT)
+                                    .show();
+                            break;
+                    }
+                }
+            }
+        };
+
+        // BROADCAST_RECEIVER FOR LISTING DEVICE WHICH HAVEN'T PAIRED ::
+        final BroadcastReceiver br_Listin_device = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                final String Action = intent.getAction();
+
+                if (Action.equals(BluetoothDevice.ACTION_FOUND)){
+                    BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+                    bluetoothDeviceArrayList.add(device);
+                    deviceListAdapter = new DeviceListAdapter(context, R.layout.ble_list, bluetoothDeviceArrayList);
+                }
+            }
+        };
 
         // SUB-DECLARATION:
         toggle_off = findViewById(R.id.toggle);
@@ -159,7 +268,6 @@ public class BLUETOOTH extends AppCompatActivity {
         Button_scan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
             }
         });
     }
@@ -252,6 +360,4 @@ public class BLUETOOTH extends AppCompatActivity {
         about = new Intent(BLUETOOTH.this, About.class);
         startActivity(about);
     }
-
-
 }
