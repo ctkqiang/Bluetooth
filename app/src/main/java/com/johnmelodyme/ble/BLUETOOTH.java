@@ -220,7 +220,6 @@ public class BLUETOOTH extends AppCompatActivity {
                     toggle_off.setBackgroundResource(toggle);
                     BA.enable();
                     startSearching();
-                    showDevice();
                     /*
                     // OPEN DEVICE _ BLUETOOTH SETTING ::
                     Intent intentOpenBluetoothSettings = new Intent();

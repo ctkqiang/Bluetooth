@@ -1,5 +1,10 @@
 package com.johnmelodyme.ble;
-
+/**
+ * @CREATOR: JOHN MELODY MELISSA ESKHOLAZHT .C.T.K.
+ * @DATETIME: 12/12/2019
+ * @COPYRIGHT: 2019 - 2023
+ * @PROJECTNAME: BLUETOOTH LOW ENERGY TUTORIAL
+ */
 import android.bluetooth.BluetoothDevice;
 import android.content.Context;
 import android.view.LayoutInflater;
