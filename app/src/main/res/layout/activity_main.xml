@@ -16,9 +16,8 @@
         android:id="@+id/on_off_ble_textView"
         android:layout_width="249dp"
         android:layout_height="57dp"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="7dp"
-        android:layout_marginEnd="23dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="34dp"
         android:textAlignment="center"
         android:textColor="@android:color/black"
         android:textSize="36sp"
@@ -30,28 +29,28 @@
         android:id="@+id/toggle"
         android:layout_width="61dp"
         android:layout_height="58dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="63dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:background="@mipmap/toggleoff"
         app:layout_constraintEnd_toStartOf="@+id/on_off_ble_textView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="164dp"
         android:layout_height="19dp"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="16dp"
         android:text="@string/LocalBle"
         app:layout_constraintEnd_toStartOf="@+id/BleName"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/Mac" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="164dp"
         android:layout_height="19dp"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="16dp"
         android:text="@string/connected_device"
         app:layout_constraintEnd_toStartOf="@+id/connected_device"
         app:layout_constraintStart_toStartOf="parent"
@@ -61,10 +60,9 @@
         android:id="@+id/Mac"
         android:layout_width="212dp"
         android:layout_height="19dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="26dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="20dp"
         android:textColor="@android:color/holo_red_dark"
-        app:layout_constraintBottom_toTopOf="@+id/textView3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView2"
         app:layout_constraintTop_toBottomOf="@+id/on_off_ble_textView" />
@@ -73,9 +71,8 @@
         android:id="@+id/BleName"
         android:layout_width="160dp"
         android:layout_height="19dp"
-        android:layout_marginEnd="26dp"
+        android:layout_marginEnd="20dp"
         android:textColor="@android:color/holo_red_dark"
-        app:layout_constraintBottom_toTopOf="@+id/connected_device"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView3"
         app:layout_constraintTop_toBottomOf="@+id/Mac" />
@@ -84,10 +81,8 @@
         android:id="@+id/connected_device"
         android:layout_width="160dp"
         android:layout_height="19dp"
-        android:layout_marginEnd="26dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="20dp"
         android:textColor="@android:color/holo_red_dark"
-        app:layout_constraintBottom_toTopOf="@+id/LV"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView4"
         app:layout_constraintTop_toBottomOf="@+id/BleName" />
@@ -96,21 +91,21 @@
         android:id="@+id/textView2"
         android:layout_width="112dp"
         android:layout_height="0dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="23dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="11dp"
         android:text="@string/MAC_ADD"
         app:layout_constraintEnd_toStartOf="@+id/Mac"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toggle" />
+        app:layout_constraintTop_toBottomOf="@+id/on_off_ble_textView" />
 
     <ListView
         android:id="@+id/LV"
-        android:layout_width="315dp"
-        android:layout_height="148dp"
-        android:layout_marginStart="23dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="22dp"
-        android:layout_marginBottom="146dp"
+        android:layout_width="332dp"
+        android:layout_height="202dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="36dp"
         app:layout_constraintBottom_toTopOf="@+id/button_scan"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -120,11 +115,13 @@
         android:id="@+id/button_scan"
         android:layout_width="110dp"
         android:layout_height="41dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="234dp"
+        android:layout_marginBottom="80dp"
         android:background="@android:color/white"
         android:text="@string/Scan"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

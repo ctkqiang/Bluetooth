@@ -268,7 +268,7 @@ public class BLUETOOTH extends AppCompatActivity {
             for (BluetoothDevice bluetoothDevice : paired_devices){
                 String DEVICE_NAME = bluetoothDevice.getName();
                 String DEVICE_MAC_ADDRESS = bluetoothDevice.getAddress();
-                arrayList.add("Device Name: " + DEVICE_NAME + "\n" + "MAC: " + DEVICE_MAC_ADDRESS);
+                arrayList.add(DEVICE_NAME + DEVICE_MAC_ADDRESS);
             }
             AA = new ArrayAdapter(BLUETOOTH.this, R.layout.support_simple_spinner_dropdown_item, arrayList);
             the_bt_list_view.setAdapter(AA);
