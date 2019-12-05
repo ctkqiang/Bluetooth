@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+ * @CREATOR: JOHN MELODY MELISSA ESKHOLAZHT .C.T.K.
+ * @DATETIME: 12/12/2019
+ * @COPYRIGHT: 2019 - 2023
+ * @PROJECTNAME: BLUETOOTH LOW ENERGY TUTORIAL
+-->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".About">
+    tools:context=".About"
+    android:theme="@style/actionbar">
 
     <ListView
         android:id="@+id/about_list_view_main"
@@ -22,13 +29,15 @@
 
     <TextView
         android:id="@+id/textView5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="340dp"
+        android:layout_height="25dp"
         android:layout_below="@+id/about_list_view_main"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="261dp"
-        android:layout_marginBottom="2dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="243dp"
+        android:layout_marginBottom="11dp"
         android:text="@string/cop"
         android:textAlignment="center"
         android:textColor="@android:color/black"

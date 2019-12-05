@@ -1,5 +1,11 @@
+<!--
+ * @CREATOR: JOHN MELODY MELISSA ESKHOLAZHT .C.T.K.
+ * @DATETIME: 12/12/2019
+ * @COPYRIGHT: 2019 - 2023
+ * @PROJECTNAME: BLUETOOTH LOW ENERGY TUTORIAL
+-->
 <resources>
-    <string name="app_name">Bluetooth -John Melody</string>
+    <string name="app_name">Bluetooth - John Melody</string>
     <string name="ble_on">Bluetooth On</string>
     <string name="ble_off">Bluetooth Off</string>
     <string name="MAC_ADD">MAC ADDRESS: </string>

@@ -14,11 +14,14 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.UUID;
@@ -54,7 +57,7 @@ public class BLUETOOTH extends AppCompatActivity {
     BluetoothAdapter BA;
     BluetoothGattService gattService;
     BluetoothDevice device;
-    BluetoothSocket socket;
+    BluetoothSocket bluetoothSocket;
     Set<BluetoothDevice> paired_devices;
     DeviceListAdapter deviceListAdapter;
 
@@ -258,6 +261,13 @@ public class BLUETOOTH extends AppCompatActivity {
                 showDevice();
             }
         });
+
+        the_bt_list_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                connect(); // Refer METHODS.
+            }
+        });
     }
 
     // THIS METHOD IS A DEVICE LISTING :
@@ -268,10 +278,28 @@ public class BLUETOOTH extends AppCompatActivity {
             for (BluetoothDevice bluetoothDevice : paired_devices){
                 String DEVICE_NAME = bluetoothDevice.getName();
                 String DEVICE_MAC_ADDRESS = bluetoothDevice.getAddress();
-                arrayList.add(DEVICE_NAME + DEVICE_MAC_ADDRESS);
+                arrayList.add(DEVICE_NAME + "__ " + DEVICE_MAC_ADDRESS);
             }
             AA = new ArrayAdapter(BLUETOOTH.this, R.layout.support_simple_spinner_dropdown_item, arrayList);
             the_bt_list_view.setAdapter(AA);
+        }
+    }
+
+    private void connect() {
+        // https://bit.ly/2Ygyhit && https://bit.ly/2RkWlz7
+        // IF THE SOCKET IS NOT BUSY, START A CONNECTION:
+        if (bluetoothSocket == null){
+            try {
+                bluetoothSocket.connect();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            try {
+                bluetoothSocket.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
