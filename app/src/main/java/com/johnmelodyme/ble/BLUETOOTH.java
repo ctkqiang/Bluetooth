@@ -22,6 +22,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.UUID;
@@ -266,8 +268,18 @@ public class BLUETOOTH extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 connect(); // Refer METHODS.
+                CLICK_TO_PAIR_DEVICE();
             }
         });
+    }
+
+    private void CLICK_TO_PAIR_DEVICE() {
+        try {
+            Method method = device.getClass().getMethod("createBond", (Class[]) null);
+            method.invoke(device, (Object[]) null);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     // THIS METHOD IS A DEVICE LISTING :
