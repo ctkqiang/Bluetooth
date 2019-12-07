@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothGatt;
 import android.bluetooth.BluetoothGattService;
 import android.bluetooth.BluetoothSocket;
 import android.content.BroadcastReceiver;
@@ -25,6 +26,7 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Set;
 import java.util.UUID;
 import static android.bluetooth.BluetoothAdapter.*;
@@ -40,6 +42,8 @@ import static com.johnmelodyme.ble.R.mipmap.toggleoff;
  */
 
 public class BLUETOOTH extends AppCompatActivity {
+
+    // https://medium.com/@gaikwadchetan93/developing-an-android-bluetooth-terminal-3933763200c6
     // GLOBAL DECLARATION:
     boolean DoubleBackToExitPressedOne = false;
     private static final UUID MY_UUID;
@@ -57,7 +61,7 @@ public class BLUETOOTH extends AppCompatActivity {
     private static final long SCAN_PERIOD = 10000;
     BluetoothAdapter.LeScanCallback scan;
     BluetoothAdapter BA;
-    BluetoothGattService gattService;
+    BluetoothGatt bluetoothGatt;
     BluetoothDevice device;
     BluetoothSocket bluetoothSocket;
     Set<BluetoothDevice> paired_devices;
@@ -269,6 +273,11 @@ public class BLUETOOTH extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 connect(); // Refer METHODS.
                 CLICK_TO_PAIR_DEVICE();
+                String a;
+                String b;
+                a = bluetoothDeviceArrayList.get(position).getName();
+                b = bluetoothDeviceArrayList.get(position).getAddress();
+                bluetoothDeviceArrayList.get(position).createBond();
             }
         });
     }
@@ -341,6 +350,7 @@ public class BLUETOOTH extends AppCompatActivity {
             startActivityForResult(enableBluetoothIntent, interlude);
         }
     }
+
 
     // CHECK FOR BLUETOOTH SUPPORTABILITY :
     private void checkBLUETOOTH() {
