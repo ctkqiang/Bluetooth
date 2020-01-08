@@ -304,8 +304,26 @@ public class BLUETOOTH extends AppCompatActivity {
             AA = new ArrayAdapter(BLUETOOTH.this, R.layout.support_simple_spinner_dropdown_item, arrayList);
             the_bt_list_view.setAdapter(AA);
         }
+        ONCLICKED();
     }
 
+    private void ONCLICKED() {
+        the_bt_list_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String Clicked = (String) parent.getItemAtPosition(position);
+                if (Clicked.equals(device.getName())){
+                    MAGIC("CONNECT NST-BSC");
+                }
+            }
+        });
+    }
+
+    private void MAGIC(String Message){
+        Toast.makeText(getApplicationContext(), Message,
+                Toast.LENGTH_SHORT)
+                .show();
+    }
     private void connect() {
         // https://bit.ly/2Ygyhit && https://bit.ly/2RkWlz7
         // IF THE SOCKET IS NOT BUSY, START A CONNECTION:
